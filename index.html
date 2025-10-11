@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nachappa PP - Software Engineer Portfolio</title>
+    
+    <!-- External Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Inline Custom Styles -->
+    <style>
+        /* Base styles and typography */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Smooth scroll offset for fixed header */
+        html {
+            scroll-padding-top: 80px;
+        }
+
+        /* Enhanced navigation transitions */
+        .nav-item, .mobile-nav-item {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover, .mobile-nav-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-item::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width .3s;
+        }
+
+        .nav-item:hover::after {
+            width: 100%;
+        }
+
+        /* Animation keyframes and effects */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Gradient line animation */
+        @keyframes shimmer {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+
+        .shimmer {
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        /* Section fade-in animation */
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .section-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* About section specific animations */
+        .about-card {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .about-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .expertise-item {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.5s ease;
+        }
+
+        .expertise-item.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .highlight-item {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.6s ease;
+        }
+
+        .highlight-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Staggered animation delays */
+        .expertise-item:nth-child(1) { transition-delay: 0.1s; }
+        .expertise-item:nth-child(2) { transition-delay: 0.2s; }
+        .expertise-item:nth-child(3) { transition-delay: 0.3s; }
+        .expertise-item:nth-child(4) { transition-delay: 0.4s; }
+
+        .highlight-item:nth-child(1) { transition-delay: 0.1s; }
+        .highlight-item:nth-child(2) { transition-delay: 0.2s; }
+        .highlight-item:nth-child(3) { transition-delay: 0.3s; }
+        .highlight-item:nth-child(4) { transition-delay: 0.4s; }
+
+        /* Component-specific styles */
+        .hero-video {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .hero-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Product hover effects */
+        .product-hover:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        /* Dropdown menu */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Brand Logo Styling */
+        .brand-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+            font-size: 1.5rem;
+        }
+
+        .brand-logo .bracket {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
+            margin: 0 4px;
+        }
+
+        .brand-logo .main-text {
+            color: white;
+            font-weight: 700;
+        }
+
+        .brand-logo .initials {
+            color: white;
+            font-weight: 400;
+        }
+
+        .brand-logo .slash {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            margin-left: 2px;
+        }
+
+        .brand-logo:hover .bracket,
+        .brand-logo:hover .slash {
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+        /* Hover effects */
+        .expertise-item:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .highlight-item:hover {
+            transform: translateX(5px);
+        }
+
+        /* Icon animations */
+        .expertise-icon {
+            transition: all 0.3s ease;
+        }
+
+        .expertise-item:hover .expertise-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        /* Custom bullet designs */
+        .custom-bullet {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #000 0%, #333 100%);
+        }
+
+        .custom-bullet::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            transition: all 0.3s ease;
+        }
+
+        .custom-bullet::after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            border: 2px solid white;
+            border-radius: 50%;
+            position: absolute;
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-item:hover .custom-bullet {
+            transform: scale(1.2) rotate(180deg);
+            background: linear-gradient(135deg, #333 0%, #000 100%);
+        }
+
+        .highlight-item:hover .custom-bullet::before {
+            transform: scale(1.5);
+            background: #fff;
+        }
+
+        .highlight-item:hover .custom-bullet::after {
+            transform: scale(1.3);
+            opacity: 0.6;
+        }
+
+        /* Alternative bullet design for variety */
+        .custom-bullet-alt {
+            width: 20px;
+            height: 20px;
+            background: #000;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.3s ease;
+            transform: rotate(45deg);
+        }
+
+        .custom-bullet-alt::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+
+        .highlight-item:nth-child(even) .custom-bullet-alt {
+            border-radius: 50%;
+            transform: rotate(0deg);
+        }
+
+        .highlight-item:hover .custom-bullet-alt {
+            transform: rotate(225deg) scale(1.2);
+            background: #333;
+        }
+
+        .highlight-item:nth-child(even):hover .custom-bullet-alt {
+            transform: rotate(0deg) scale(1.2);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-black shadow-sm">
+        <div class="w-full py-3 flex justify-between items-center px-4 md:px-8">
+            <div class="flex items-center">
+                <a href="/" class="brand-logo text-lg md:text-2xl">
+                    <span class="bracket">&lt;</span>
+                    <span class="main-text">NACHAPPA</span>
+                    <span class="initials"> PP</span>
+                    <span class="slash">/</span>
+                    <span class="bracket">&gt;</span>
+                </a>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#skills" class="nav-item text-white uppercase font-medium hover:text-gray-300 transition">SKILLS</a>
+                <a href="#about" class="nav-item text-white uppercase font-medium hover:text-gray-300 transition">ABOUT</a>
+                <a href="#publications" class="nav-item text-white uppercase font-medium hover:text-gray-300 transition">PUBLICATIONS</a>
+                <a href="#contact" class="nav-item text-white uppercase font-medium hover:text-gray-300 transition">CONTACT</a>
+            </nav>
+            
+            <div class="flex items-center space-x-2 md:space-x-4">
+                <!-- Social Media Icons - Hidden on very small screens -->
+                <div class="hidden sm:flex space-x-2 md:space-x-4">
+                    <a href="https://github.com/" class="text-white hover:text-gray-300 transition"><i class="fab fa-github text-lg"></i></a>
+                    <a href="https://www.linkedin.com/in/nachappa-pp-60a1b9368/" class="text-white hover:text-gray-300 transition"><i class="fab fa-linkedin text-lg"></i></a>
+                    <a href="https://twitter.com/" class="text-white hover:text-gray-300 transition"><i class="fab fa-twitter text-lg"></i></a>
+                    <a href="https://instagram.com/" class="text-white hover:text-gray-300 transition"><i class="fab fa-instagram text-lg"></i></a>
+                    <a href="https://dribbble.com/" class="text-white hover:text-gray-300 transition"><i class="fab fa-dribbble text-lg"></i></a>
+                    <a href="https://behance.net/" class="text-white hover:text-gray-300 transition"><i class="fab fa-behance text-lg"></i></a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white p-2">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="md:hidden bg-black border-t border-gray-800 transform -translate-y-full transition-transform duration-300 ease-in-out">
+            <nav class="flex flex-col py-4">
+                <a href="#skills" class="mobile-nav-item text-white uppercase font-medium py-3 px-8 hover:bg-gray-900 transition">SKILLS</a>
+                <a href="#about" class="mobile-nav-item text-white uppercase font-medium py-3 px-8 hover:bg-gray-900 transition">ABOUT</a>
+                <a href="#publications" class="mobile-nav-item text-white uppercase font-medium py-3 px-8 hover:bg-gray-900 transition">PUBLICATIONS</a>
+                <a href="#contact" class="mobile-nav-item text-white uppercase font-medium py-3 px-8 hover:bg-gray-900 transition">CONTACT</a>
+                
+                <!-- Mobile Social Media -->
+                <div class="flex justify-center space-x-6 py-4 border-t border-gray-800 mt-4">
+                    <a href="https://github.com/" class="text-white hover:text-gray-300 transition"><i class="fab fa-github text-xl"></i></a>
+                    <a href="https://www.linkedin.com/in/nachappa-pp-60a1b9368/" class="text-white hover:text-gray-300 transition"><i class="fab fa-linkedin text-xl"></i></a>
+                    <a href="https://twitter.com/" class="text-white hover:text-gray-300 transition"><i class="fab fa-twitter text-xl"></i></a>
+                    <a href="https://instagram.com/" class="text-white hover:text-gray-300 transition"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="https://dribbble.com/" class="text-white hover:text-gray-300 transition"><i class="fab fa-dribbble text-xl"></i></a>
+                    <a href="https://behance.net/" class="text-white hover:text-gray-300 transition"><i class="fab fa-behance text-xl"></i></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-video">
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat flex items-center justify-center overflow-hidden" style="background-image: url('Wallpaper3.jpg');">
+            <!-- Dark overlay for text readability -->
+            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+            <!-- Tech Pattern Background -->
+            <div class="absolute inset-0 opacity-5">
+                <div class="absolute top-10 left-10 w-20 h-20 border border-white -full"></div>
+                <div class="absolute top-32 right-20 w-16 h-16 border border-white -full"></div>
+                <div class="absolute bottom-20 left-1/4 w-12 h-12 border border-white -full"></div>
+                <div class="absolute bottom-32 right-1/3 w-24 h-24 border border-white -full"></div>
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 border border-white -full"></div>
+            </div>
+            
+            <div class="text-center text-white px-4 relative z-10">
+                <p class="text-lg sm:text-xl md:text-2xl mb-3 md:mb-4 font-medium text-gray-300 px-2">Engineer – Smart Manufacturing & Digital Transformation</p>
+                
+                <!-- Animated Gradient Line -->
+                <div class="w-24 md:w-32 h-1 bg-gradient-to-r from-transparent via-white to-transparent mx-auto mb-6 md:mb-8 shimmer"></div>
+                
+                <p class="text-base sm:text-lg md:text-xl mb-6 md:mb-8 max-w-4xl mx-auto font-semibold px-2">
+                    Transforming Manufacturing with the power of Electronics, AI/ML, and Software to deliver next-gen Industry 4.0 solutions.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
+                    <a href="#skills" class="bg-white text-black px-6 md:px-8 py-3 font-semibold hover:bg-gray-100 transition text-sm md:text-base">VIEW SKILLS</a>
+                    <a href="#contact" class="border-2 border-white text-white px-6 md:px-8 py-3 font-semibold hover:bg-white hover:text-black transition text-sm md:text-base">GET IN TOUCH</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="py-16 px-4 bg-gray-50 section-fade-in" id="skills">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">TECHNICAL SKILLS</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4">MULTI-DOMAIN EXPERTISE</h3>
+                    <p class="text-gray-700 mb-6">
+                        Bridging the gap between traditional manufacturing and cutting-edge technology. Expert in 
+                        electronics hardware design, operational excellence methodologies, and Theory of Constraints 
+                        implementation. Combining software development with industrial engineering for comprehensive 
+                        digital transformation solutions.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-gray-100 text-black px-3 py-1 text-sm">Electronics Design</span>
+                        <span class="bg-gray-100 text-black px-3 py-1 text-sm">Hardware Development</span>
+                        <span class="bg-gray-100 text-black px-3 py-1 text-sm">Operational Excellence</span>
+                        <span class="bg-gray-100 text-black px-3 py-1 text-sm">Theory of Constraints</span>
+                        <span class="bg-gray-100 text-black px-3 py-1 text-sm">Software Engineering</span>
+                        <span class="bg-gray-100 text-black px-3 py-1 text-sm">Process Optimization</span>
+                    </div>
+                    <button class="bg-black text-white px-6 py-3 hover:bg-gray-800 transition">DOWNLOAD RESUME</button>
+                </div>
+                <div class="flex justify-center">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-6 shadow-lg text-center">
+                            <i class="fas fa-microchip text-4xl text-black mb-4"></i>
+                            <h4 class="font-semibold">Electronics</h4>
+                            <p class="text-gray-600">Hardware Design & IoT</p>
+                        </div>
+                        <div class="bg-white p-6 shadow-lg text-center">
+                            <i class="fas fa-cogs text-4xl text-black mb-4"></i>
+                            <h4 class="font-semibold">Operations</h4>
+                            <p class="text-gray-600">Theory of Constraints</p>
+                        </div>
+                        <div class="bg-white p-6 shadow-lg text-center">
+                            <i class="fas fa-brain text-4xl text-black mb-4"></i>
+                            <h4 class="font-semibold">AI/ML</h4>
+                            <p class="text-gray-600">Predictive Analytics</p>
+                        </div>
+                        <div class="bg-white p-6 shadow-lg text-center">
+                            <i class="fas fa-industry text-4xl text-black mb-4"></i>
+                            <h4 class="font-semibold">Manufacturing</h4>
+                            <p class="text-gray-600">Industry 4.0 Solutions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-16 px-4 bg-white section-fade-in relative" id="about" style="background-image: url('Wallpaper2.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        <!-- Dark overlay for text readability -->
+        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+        <div class="container mx-auto max-w-4xl relative z-10">
+            <h2 class="text-3xl font-bold text-center mb-12 text-white">About Me</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                <!-- Image -->
+                <div class="flex flex-col items-center">
+                    <img src="Nachappa PP_Photo.jpg" alt="Nachappa PP" class="w-80 h-80 object-cover">
+                </div>
+                
+                <!-- Content -->
+                <div>
+                    <p class="text-white leading-relaxed text-justify text-sm">
+                        I have over 2.5 years of experience in manufacturing and research, focusing on simplifying processes and digitally 
+                        empowering Indian MSMEs. I specialize in bridging traditional manufacturing with advanced technologies, driving 
+                        digital transformation, and clearly communicating complex concepts. My expertise includes electronics hardware design, 
+                        operational excellence, and Theory of Constraints implementation. Passionate about Industry 4.0, I develop intelligent 
+                        systems that optimize manufacturing processes. Initially focused on traditional methods, I now approach manufacturing 
+                        through a holistic lens of smart, technology-driven solutions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section class="py-16 px-4 bg-gray-50 section-fade-in" id="publications">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-3xl font-bold text-center mb-12">PUBLICATIONS</h2>
+            
+            <div class="space-y-6">
+                <!-- Publication 1 -->
+                <div class="bg-white p-6 shadow-lg">
+                    <h3 class="text-xl font-bold mb-2 text-gray-900">Intelligent GD&T symbol detection in mechanical drawings: a comparative study of YOLOv11, Faster R-CNN, and RetinaNet for quality assurance</h3>
+                    <p class="text-gray-700 mb-3">
+                        <strong>Authors:</strong> Tadigotla Narendra Reddy, Nitesh Kumar, <strong>Nachappa Pemmanda Ponnappa</strong>, Nagasiri Mohana, Prakash Vinod, Mervin A. Herbert, Shrikantha S. Rao
+                    </p>
+                    <p class="text-gray-600 mb-3">
+                        <strong>Journal:</strong> Journal of Intelligent Manufacturing (2025)
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        This research presents a comparative analysis of three state-of-the-art deep learning models for automated GD&T symbol detection in CAD engineering drawings. The study addresses the need for cost-effective, indigenous solutions for SMEs and MSMEs in quality automation tasks, demonstrating that YOLOv11 provides the optimal balance between detection accuracy and real-time performance.
+                    </p>
+                    <a href="https://link.springer.com/article/10.1007/s10845-025-02669-3" target="_blank" class="inline-block bg-black text-white px-4 py-2 font-semibold hover:bg-gray-800 transition">View Publication</a>
+                </div>
+
+                <!-- Publication 2 -->
+                <div class="bg-white p-6 shadow-lg">
+                    <h3 class="text-xl font-bold mb-2 text-gray-900">Overall equipment efficiency module and losses using machine-to-machine connectivity for smart factory</h3>
+                    <p class="text-gray-700 mb-3">
+                        <strong>Authors:</strong> Tadigotla Narendra Reddy, <strong>Nachappa Pemmanda Ponnappa</strong>, Prakash Vinod, Mervin A. Herbert, Shrikantha S. Rao
+                    </p>
+                    <p class="text-gray-600 mb-3">
+                        <strong>Journal:</strong> ISSS Journal of Micro and Smart Systems, Volume 14, pages 87–99 (2025)
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        This study focuses on implementing Overall Equipment Effectiveness (OEE) using OPC UA (Open Platform Communications Unified Architecture) in smart manufacturing settings. The research combines data from CNC machines with plant schedules to demonstrate real-time OEE calculation and identify operational losses. The solution can be deployed on-premises or in the cloud to automate OEE calculation processes, providing insights for productivity gains and operational flow improvements.
+                    </p>
+                    <a href="https://link.springer.com/article/10.1007/s41683-025-00134-0" target="_blank" class="inline-block bg-black text-white px-4 py-2 font-semibold hover:bg-gray-800 transition">View Publication</a>
+                </div>
+
+                <!-- Publication 3 -->
+                <div class="bg-white p-6 shadow-lg">
+                    <h3 class="text-xl font-bold mb-2 text-gray-900">Development of Low-Cost IIoT Solution for Smart Factories in MSME Industries: Utilizing Current Measurements for Machine and Factory Monitoring</h3>
+                    <p class="text-gray-700 mb-3">
+                        <strong>Authors:</strong> T. Narendra Reddy, Shri Prakash Vinod, <strong>P. P. Nachappa</strong>, Mervin A. Herbert, Shrikantha S. Rao
+                    </p>
+                    <p class="text-gray-600 mb-3">
+                        <strong>Conference:</strong> Industry 4.0 and Advanced Manufacturing (I-4AM 2024), Lecture Notes in Mechanical Engineering
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        This paper presents the development of an affordable IIoT solution for productivity monitoring in MSME industries. The solution leverages cost-effective hardware for sensing, a controller for data acquisition and analysis, and an edge gateway for cloud storage. The system provides insights into factory and machine statuses, facilitates productivity tracking, and enables automated reporting through Email and SMS with customized daily and monthly reports.
+                    </p>
+                    <a href="https://link.springer.com/chapter/10.1007/978-981-97-6176-0_3" target="_blank" class="inline-block bg-black text-white px-4 py-2 font-semibold hover:bg-gray-800 transition">View Chapter</a>
+                </div>
+
+                <!-- Publication 4 -->
+                <div class="bg-white p-6 shadow-lg">
+                    <h3 class="text-xl font-bold mb-2 text-gray-900">An Industry 4.0 Approach: Data Acquisition and Machine Monitoring for Welding Machines</h3>
+                    <p class="text-gray-700 mb-3">
+                        <strong>Authors:</strong> T. Narendra Reddy, <strong>Nachappa Pemmanda Ponnappa</strong>, P. Prasad, Prakash Vinod, Mervin A. Herbert, Shrikantha S. Rao
+                    </p>
+                    <p class="text-gray-600 mb-3">
+                        <strong>Conference:</strong> Smart Materials and Manufacturing Technologies for Sustainable Development (SME 2023), Advances in Science, Technology & Innovation
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        This research introduces an innovative application of Industry 4.0 principles in welding by employing IIoT-based performance monitoring equipment. The developed solution can be used for any kind of welding machines including legacy welding machines, delivering real-time updates on shop floor welding processes using Operational Technology (OT) and Information Technology (IT) with hall effect sensors and voltage transducers connected to PLCs.
+                    </p>
+                    <a href="https://link.springer.com/chapter/10.1007/978-3-031-63909-8_6" target="_blank" class="inline-block bg-black text-white px-4 py-2 font-semibold hover:bg-gray-800 transition">View Chapter</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16 px-4 text-white section-fade-in relative" id="contact" style="background-image: url('Wallpaper1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        <!-- Dark overlay for text readability -->
+        <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div class="container mx-auto max-w-4xl text-center relative z-10">
+            <h2 class="text-3xl font-bold mb-4">LET'S CONNECT</h2>
+            <p class="mb-8">I'm always interested in new opportunities and exciting projects. Let's discuss how we can work together.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div class="text-center">
+                    <i class="fas fa-envelope text-3xl mb-4"></i>
+                    <h3 class="font-semibold mb-2">Email</h3>
+                    <p>nikinachappa57@gmail.com</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-phone text-3xl mb-4"></i>
+                    <h3 class="font-semibold mb-2">Phone</h3>
+                    <p>+91 9108330616</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-map-marker-alt text-3xl mb-4"></i>
+                    <h3 class="font-semibold mb-2">Location</h3>
+                    <p>Bangalore, India</p>
+                </div>
+            </div>
+            
+            <form class="flex flex-col md:flex-row gap-4 max-w-lg mx-auto">
+                <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3  text-black">
+                <button type="submit" class="bg-white text-black px-6 py-3  font-semibold hover:bg-gray-200 transition">SEND MESSAGE</button>
+            </form>
+            
+            <div class="flex justify-center space-x-6 mt-8">
+                <a href="https://www.linkedin.com/in/nachappa-pp-60a1b9368/" class="text-white hover:text-gray-300"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/" class="text-white hover:text-gray-300"><i class="fab fa-github"></i></a>
+                <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white hover:text-gray-300"><i class="fas fa-globe"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 py-8 px-4">
+        <div class="container mx-auto text-center">
+            <p class="text-gray-600">© 2025 Nachappa PP. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu functionality and smooth scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = mobileMenuBtn.querySelector('i');
+            
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', function() {
+                const isOpen = mobileMenu.classList.contains('translate-y-0');
+                
+                if (isOpen) {
+                    // Close menu
+                    mobileMenu.classList.remove('translate-y-0');
+                    mobileMenu.classList.add('-translate-y-full');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                } else {
+                    // Open menu
+                    mobileMenu.classList.remove('-translate-y-full');
+                    mobileMenu.classList.add('translate-y-0');
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-times');
+                }
+            });
+            
+            // Enhanced smooth scrolling for all navigation links
+            const allNavLinks = document.querySelectorAll('a[href^="#"]');
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        // Close mobile menu if open
+                        if (mobileMenu.classList.contains('translate-y-0')) {
+                            mobileMenu.classList.remove('translate-y-0');
+                            mobileMenu.classList.add('-translate-y-full');
+                            menuIcon.classList.remove('fa-times');
+                            menuIcon.classList.add('fa-bars');
+                        }
+                        
+                        // Smooth scroll to target
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Add active state to navigation
+                        allNavLinks.forEach(l => l.classList.remove('text-gray-300'));
+                        this.classList.add('text-gray-300');
+                    }
+                });
+            });
+            
+            // Intersection Observer for fade-in animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all sections with fade-in class
+            const fadeInSections = document.querySelectorAll('.section-fade-in');
+            fadeInSections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // About section specific animations
+            const aboutObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.2,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            // Observe about cards
+            const aboutCards = document.querySelectorAll('.about-card');
+            aboutCards.forEach((card, index) => {
+                aboutObserver.observe(card);
+            });
+            
+            // Observe expertise items
+            const expertiseItems = document.querySelectorAll('.expertise-item');
+            expertiseItems.forEach(item => {
+                aboutObserver.observe(item);
+            });
+            
+            // Observe highlight items
+            const highlightItems = document.querySelectorAll('.highlight-item');
+            highlightItems.forEach(item => {
+                aboutObserver.observe(item);
+            });
+            
+            // Active navigation highlighting based on scroll position
+            const sections = document.querySelectorAll('section[id]');
+            const navItems = document.querySelectorAll('.nav-item, .mobile-nav-item');
+            
+            window.addEventListener('scroll', function() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navItems.forEach(item => {
+                    item.classList.remove('text-gray-300');
+                    if (item.getAttribute('href') === `#${current}`) {
+                        item.classList.add('text-gray-300');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
