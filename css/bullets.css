@@ -1,0 +1,87 @@
+/* Custom bullet designs */
+
+.custom-bullet {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #000 0%, #333 100%);
+}
+
+.custom-bullet::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.custom-bullet::after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border: 2px solid white;
+    border-radius: 50%;
+    position: absolute;
+    opacity: 0.3;
+    transition: all 0.3s ease;
+}
+
+.highlight-item:hover .custom-bullet {
+    transform: scale(1.2) rotate(180deg);
+    background: linear-gradient(135deg, #333 0%, #000 100%);
+}
+
+.highlight-item:hover .custom-bullet::before {
+    transform: scale(1.5);
+    background: #fff;
+}
+
+.highlight-item:hover .custom-bullet::after {
+    transform: scale(1.3);
+    opacity: 0.6;
+}
+
+/* Alternative bullet design for variety */
+.custom-bullet-alt {
+    width: 20px;
+    height: 20px;
+    background: #000;
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.3s ease;
+    transform: rotate(45deg);
+}
+
+.custom-bullet-alt::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+
+.highlight-item:nth-child(even) .custom-bullet-alt {
+    border-radius: 50%;
+    transform: rotate(0deg);
+}
+
+.highlight-item:hover .custom-bullet-alt {
+    transform: rotate(225deg) scale(1.2);
+    background: #333;
+}
+
+.highlight-item:nth-child(even):hover .custom-bullet-alt {
+    transform: rotate(0deg) scale(1.2);
+}

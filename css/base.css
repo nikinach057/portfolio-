@@ -1,0 +1,33 @@
+/* Base styles and typography */
+body {
+    font-family: 'Montserrat', sans-serif;
+    scroll-behavior: smooth;
+}
+
+/* Smooth scroll offset for fixed header */
+html {
+    scroll-padding-top: 80px;
+}
+
+/* Enhanced navigation transitions */
+.nav-item, .mobile-nav-item {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-item:hover, .mobile-nav-item:hover {
+    transform: translateY(-2px);
+}
+
+.nav-item::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width .3s;
+}
+
+.nav-item:hover::after {
+    width: 100%;
+}

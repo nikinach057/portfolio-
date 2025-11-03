@@ -1,0 +1,85 @@
+/* Component-specific styles */
+
+/* Hero video styling */
+.hero-video {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.hero-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Product hover effects */
+.product-hover:hover {
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
+
+/* Dropdown menu */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Brand Logo Styling */
+.brand-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+    font-size: 1.5rem;
+}
+
+.brand-logo .bracket {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
+    margin: 0 4px;
+}
+
+.brand-logo .main-text {
+    color: white;
+    font-weight: 700;
+}
+
+.brand-logo .initials {
+    color: white;
+    font-weight: 400;
+}
+
+.brand-logo .slash {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+    margin-left: 2px;
+}
+
+.brand-logo:hover .bracket,
+.brand-logo:hover .slash {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+/* Hover effects */
+.expertise-item:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.highlight-item:hover {
+    transform: translateX(5px);
+}
+
+/* Icon animations */
+.expertise-icon {
+    transition: all 0.3s ease;
+}
+
+.expertise-item:hover .expertise-icon {
+    transform: scale(1.2) rotate(5deg);
+}
