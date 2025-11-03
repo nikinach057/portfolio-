@@ -23,6 +23,17 @@
             scroll-padding-top: 80px;
         }
 
+        /* Mobile-specific improvements */
+        @media (max-width: 640px) {
+            html {
+                scroll-padding-top: 60px;
+            }
+            
+            .brand-logo {
+                font-size: 1rem;
+            }
+        }
+
         /* Enhanced navigation transitions */
         .nav-item, .mobile-nav-item {
             position: relative;
@@ -158,7 +169,6 @@
             letter-spacing: 1px;
             position: relative;
             display: inline-block;
-            font-size: 1.5rem;
         }
 
         .brand-logo .bracket {
@@ -298,10 +308,10 @@
 </head>
 <body class="bg-white text-gray-900">
     <!-- Header -->
-    <header class="sticky top-0 z-50 bg-black shadow-sm">
-        <div class="w-full py-3 flex justify-between items-center px-4 md:px-8">
+    <header class="sticky top-0 z-50 bg-black shadow-sm relative">
+        <div class="w-full py-2 md:py-3 flex justify-between items-center px-3 sm:px-4 md:px-8">
             <div class="flex items-center">
-                <a href="/" class="brand-logo text-lg md:text-2xl">
+                <a href="/" class="brand-logo text-sm sm:text-lg md:text-2xl">
                     <span class="bracket">&lt;</span>
                     <span class="main-text">NACHAPPA</span>
                     <span class="initials"> PP</span>
@@ -330,38 +340,38 @@
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-white p-2">
-                    <i class="fas fa-bars text-xl"></i>
+                <button id="mobile-menu-btn" class="md:hidden text-white p-2 focus:outline-none" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars text-lg sm:text-xl"></i>
                 </button>
             </div>
         </div>
         
         <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="md:hidden bg-black border-t border-gray-800 transform -translate-y-full transition-transform duration-300 ease-in-out">
-            <nav class="flex flex-col py-4">
-                <a href="#skills" class="mobile-nav-item text-white uppercase font-medium py-3 px-8 hover:bg-gray-900 transition">SKILLS</a>
-                <a href="#about" class="mobile-nav-item text-white uppercase font-medium py-3 px-8 hover:bg-gray-900 transition">ABOUT</a>
-                <a href="#publications" class="mobile-nav-item text-white uppercase font-medium py-3 px-8 hover:bg-gray-900 transition">PUBLICATIONS</a>
-                <a href="#contact" class="mobile-nav-item text-white uppercase font-medium py-3 px-8 hover:bg-gray-900 transition">CONTACT</a>
+        <div id="mobile-menu" class="md:hidden bg-black border-t border-gray-800 transform -translate-y-full transition-transform duration-300 ease-in-out absolute left-0 right-0 w-full top-full">
+            <nav class="flex flex-col py-4 max-h-[calc(100vh-60px)] overflow-y-auto">
+                <a href="#skills" class="mobile-nav-item text-white uppercase font-medium py-3 px-6 sm:px-8 hover:bg-gray-900 transition text-sm sm:text-base">SKILLS</a>
+                <a href="#about" class="mobile-nav-item text-white uppercase font-medium py-3 px-6 sm:px-8 hover:bg-gray-900 transition text-sm sm:text-base">ABOUT</a>
+                <a href="#publications" class="mobile-nav-item text-white uppercase font-medium py-3 px-6 sm:px-8 hover:bg-gray-900 transition text-sm sm:text-base">PUBLICATIONS</a>
+                <a href="#contact" class="mobile-nav-item text-white uppercase font-medium py-3 px-6 sm:px-8 hover:bg-gray-900 transition text-sm sm:text-base">CONTACT</a>
                 
                 <!-- Mobile Social Media -->
-                <div class="flex justify-center space-x-6 py-4 border-t border-gray-800 mt-4">
-                    <a href="https://github.com/" class="text-white hover:text-gray-300 transition"><i class="fab fa-github text-xl"></i></a>
-                    <a href="https://www.linkedin.com/in/nachappa-pp-60a1b9368/" class="text-white hover:text-gray-300 transition"><i class="fab fa-linkedin text-xl"></i></a>
-                    <a href="https://twitter.com/" class="text-white hover:text-gray-300 transition"><i class="fab fa-twitter text-xl"></i></a>
-                    <a href="https://instagram.com/" class="text-white hover:text-gray-300 transition"><i class="fab fa-instagram text-xl"></i></a>
-                    <a href="https://dribbble.com/" class="text-white hover:text-gray-300 transition"><i class="fab fa-dribbble text-xl"></i></a>
-                    <a href="https://behance.net/" class="text-white hover:text-gray-300 transition"><i class="fab fa-behance text-xl"></i></a>
+                <div class="flex justify-center space-x-4 sm:space-x-6 py-4 border-t border-gray-800 mt-4">
+                    <a href="https://github.com/" class="text-white hover:text-gray-300 transition"><i class="fab fa-github text-lg sm:text-xl"></i></a>
+                    <a href="https://www.linkedin.com/in/nachappa-pp-60a1b9368/" class="text-white hover:text-gray-300 transition"><i class="fab fa-linkedin text-lg sm:text-xl"></i></a>
+                    <a href="https://twitter.com/" class="text-white hover:text-gray-300 transition"><i class="fab fa-twitter text-lg sm:text-xl"></i></a>
+                    <a href="https://instagram.com/" class="text-white hover:text-gray-300 transition"><i class="fab fa-instagram text-lg sm:text-xl"></i></a>
+                    <a href="https://dribbble.com/" class="text-white hover:text-gray-300 transition"><i class="fab fa-dribbble text-lg sm:text-xl"></i></a>
+                    <a href="https://behance.net/" class="text-white hover:text-gray-300 transition"><i class="fab fa-behance text-lg sm:text-xl"></i></a>
                 </div>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-video">
+    <section class="relative min-h-screen md:min-h-[600px] lg:min-h-[700px]">
         <div class="absolute inset-0 bg-cover bg-center bg-no-repeat flex items-center justify-center overflow-hidden" style="background-image: url('Wallpaper3.jpg');">
             <!-- Dark overlay for text readability -->
-            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+            <div class="absolute inset-0 bg-black bg-opacity-40 md:bg-opacity-40"></div>
             <!-- Tech Pattern Background -->
             <div class="absolute inset-0 opacity-5">
                 <div class="absolute top-10 left-10 w-20 h-20 border border-white -full"></div>
@@ -371,68 +381,68 @@
                 <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 border border-white -full"></div>
             </div>
             
-            <div class="text-center text-white px-4 relative z-10">
-                <p class="text-lg sm:text-xl md:text-2xl mb-3 md:mb-4 font-medium text-gray-300 px-2">Engineer – Smart Manufacturing & Digital Transformation</p>
+            <div class="text-center text-white px-4 md:px-6 lg:px-8 relative z-10 py-16 sm:py-20 md:py-12 lg:py-0">
+                <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl mb-3 md:mb-4 font-medium text-gray-200 px-2 leading-relaxed">Engineer – Smart Manufacturing & Digital Transformation</p>
                 
                 <!-- Animated Gradient Line -->
-                <div class="w-24 md:w-32 h-1 bg-gradient-to-r from-transparent via-white to-transparent mx-auto mb-6 md:mb-8 shimmer"></div>
+                <div class="w-16 sm:w-20 md:w-24 lg:w-32 h-0.5 sm:h-1 bg-gradient-to-r from-transparent via-white to-transparent mx-auto mb-4 md:mb-6 lg:mb-8 shimmer"></div>
                 
-                <p class="text-base sm:text-lg md:text-xl mb-6 md:mb-8 max-w-4xl mx-auto font-semibold px-2">
+                <p class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-6 md:mb-8 max-w-4xl mx-auto font-semibold px-2 leading-relaxed">
                     Transforming Manufacturing with the power of Electronics, AI/ML, and Software to deliver next-gen Industry 4.0 solutions.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
-                    <a href="#skills" class="bg-white text-black px-6 md:px-8 py-3 font-semibold hover:bg-gray-100 transition text-sm md:text-base">VIEW SKILLS</a>
-                    <a href="#contact" class="border-2 border-white text-white px-6 md:px-8 py-3 font-semibold hover:bg-white hover:text-black transition text-sm md:text-base">GET IN TOUCH</a>
+                <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4 max-w-md sm:max-w-none mx-auto">
+                    <a href="#skills" class="bg-white text-black px-5 sm:px-6 md:px-8 lg:px-10 py-2.5 sm:py-3 rounded font-semibold hover:bg-gray-100 transition text-xs sm:text-sm md:text-base w-full sm:w-auto text-center">VIEW SKILLS</a>
+                    <a href="#contact" class="border-2 border-white text-white px-5 sm:px-6 md:px-8 lg:px-10 py-2.5 sm:py-3 rounded font-semibold hover:bg-white hover:text-black transition text-xs sm:text-sm md:text-base w-full sm:w-auto text-center">GET IN TOUCH</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section class="py-16 px-4 bg-gray-50 section-fade-in" id="skills">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12">TECHNICAL SKILLS</h2>
+    <section class="py-12 md:py-16 px-4 md:px-6 lg:px-8 bg-gray-50 section-fade-in" id="skills">
+        <div class="container mx-auto max-w-7xl">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-8 md:mb-12">TECHNICAL SKILLS</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h3 class="text-2xl font-semibold mb-4">MULTI-DOMAIN EXPERTISE</h3>
-                    <p class="text-gray-700 mb-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start lg:items-center">
+                <div class="order-2 lg:order-1">
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4">MULTI-DOMAIN EXPERTISE</h3>
+                    <p class="text-gray-700 mb-4 md:mb-6 text-sm md:text-base leading-relaxed">
                         Bridging the gap between traditional manufacturing and cutting-edge technology. Expert in 
                         electronics hardware design, operational excellence methodologies, and Theory of Constraints 
                         implementation. Combining software development with industrial engineering for comprehensive 
                         digital transformation solutions.
                     </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="bg-gray-100 text-black px-3 py-1 text-sm">Electronics Design</span>
-                        <span class="bg-gray-100 text-black px-3 py-1 text-sm">Hardware Development</span>
-                        <span class="bg-gray-100 text-black px-3 py-1 text-sm">Operational Excellence</span>
-                        <span class="bg-gray-100 text-black px-3 py-1 text-sm">Theory of Constraints</span>
-                        <span class="bg-gray-100 text-black px-3 py-1 text-sm">Software Engineering</span>
-                        <span class="bg-gray-100 text-black px-3 py-1 text-sm">Process Optimization</span>
+                    <div class="flex flex-wrap gap-2 mb-4 md:mb-6">
+                        <span class="bg-gray-100 text-black px-3 py-1 rounded-full text-xs md:text-sm">Electronics Design</span>
+                        <span class="bg-gray-100 text-black px-3 py-1 rounded-full text-xs md:text-sm">Hardware Development</span>
+                        <span class="bg-gray-100 text-black px-3 py-1 rounded-full text-xs md:text-sm">Operational Excellence</span>
+                        <span class="bg-gray-100 text-black px-3 py-1 rounded-full text-xs md:text-sm">Theory of Constraints</span>
+                        <span class="bg-gray-100 text-black px-3 py-1 rounded-full text-xs md:text-sm">Software Engineering</span>
+                        <span class="bg-gray-100 text-black px-3 py-1 rounded-full text-xs md:text-sm">Process Optimization</span>
                     </div>
-                    <button class="bg-black text-white px-6 py-3 hover:bg-gray-800 transition">DOWNLOAD RESUME</button>
+                    <a href="NACHAPPA P P RESUME-2025.pdf" download="NACHAPPA_P_P_Resume_2025.pdf" class="inline-block bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition text-sm md:text-base w-full sm:w-auto text-center">DOWNLOAD RESUME</a>
                 </div>
-                <div class="flex justify-center">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-white p-6 shadow-lg text-center">
-                            <i class="fas fa-microchip text-4xl text-black mb-4"></i>
-                            <h4 class="font-semibold">Electronics</h4>
-                            <p class="text-gray-600">Hardware Design & IoT</p>
+                <div class="flex justify-center order-1 lg:order-2 mb-6 lg:mb-0">
+                    <div class="grid grid-cols-2 gap-3 md:gap-4 w-full max-w-md">
+                        <div class="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-lg text-center">
+                            <i class="fas fa-microchip text-2xl sm:text-3xl md:text-4xl text-black mb-2 md:mb-4"></i>
+                            <h4 class="font-semibold text-xs sm:text-sm md:text-base">Electronics</h4>
+                            <p class="text-gray-600 text-xs md:text-sm">Hardware Design & IoT</p>
                         </div>
-                        <div class="bg-white p-6 shadow-lg text-center">
-                            <i class="fas fa-cogs text-4xl text-black mb-4"></i>
-                            <h4 class="font-semibold">Operations</h4>
-                            <p class="text-gray-600">Theory of Constraints</p>
+                        <div class="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-lg text-center">
+                            <i class="fas fa-cogs text-2xl sm:text-3xl md:text-4xl text-black mb-2 md:mb-4"></i>
+                            <h4 class="font-semibold text-xs sm:text-sm md:text-base">Operations</h4>
+                            <p class="text-gray-600 text-xs md:text-sm">Theory of Constraints</p>
                         </div>
-                        <div class="bg-white p-6 shadow-lg text-center">
-                            <i class="fas fa-brain text-4xl text-black mb-4"></i>
-                            <h4 class="font-semibold">AI/ML</h4>
-                            <p class="text-gray-600">Predictive Analytics</p>
+                        <div class="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-lg text-center">
+                            <i class="fas fa-brain text-2xl sm:text-3xl md:text-4xl text-black mb-2 md:mb-4"></i>
+                            <h4 class="font-semibold text-xs sm:text-sm md:text-base">AI/ML</h4>
+                            <p class="text-gray-600 text-xs md:text-sm">Predictive Analytics</p>
                         </div>
-                        <div class="bg-white p-6 shadow-lg text-center">
-                            <i class="fas fa-industry text-4xl text-black mb-4"></i>
-                            <h4 class="font-semibold">Manufacturing</h4>
-                            <p class="text-gray-600">Industry 4.0 Solutions</p>
+                        <div class="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-lg text-center">
+                            <i class="fas fa-industry text-2xl sm:text-3xl md:text-4xl text-black mb-2 md:mb-4"></i>
+                            <h4 class="font-semibold text-xs sm:text-sm md:text-base">Manufacturing</h4>
+                            <p class="text-gray-600 text-xs md:text-sm">Industry 4.0 Solutions</p>
                         </div>
                     </div>
                 </div>
@@ -441,21 +451,21 @@
     </section>
 
     <!-- About Section -->
-    <section class="py-16 px-4 bg-white section-fade-in relative" id="about" style="background-image: url('Wallpaper2.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <section class="py-12 md:py-16 px-4 md:px-6 lg:px-8 bg-white section-fade-in relative" id="about" style="background-image: url('Wallpaper2.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
         <!-- Dark overlay for text readability -->
         <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-        <div class="container mx-auto max-w-4xl relative z-10">
-            <h2 class="text-3xl font-bold text-center mb-12 text-white">About Me</h2>
+        <div class="container mx-auto max-w-6xl relative z-10">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-8 md:mb-12 text-white">About Me</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start md:items-center">
                 <!-- Image -->
-                <div class="flex flex-col items-center">
-                    <img src="Nachappa PP_Photo.jpg" alt="Nachappa PP" class="w-80 h-80 object-cover">
+                <div class="flex flex-col items-center justify-center order-1 mb-6 md:mb-0">
+                    <img src="Nachappa PP_Photo.jpg" alt="Nachappa PP" class="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80 object-cover rounded-lg shadow-lg">
                 </div>
                 
                 <!-- Content -->
-                <div>
-                    <p class="text-white leading-relaxed text-justify text-sm">
+                <div class="order-2">
+                    <p class="text-white leading-relaxed text-justify text-xs sm:text-sm md:text-base lg:text-lg px-2 md:px-0">
                         I have over 2.5 years of experience in manufacturing and research, focusing on simplifying processes and digitally 
                         empowering Indian MSMEs. I specialize in bridging traditional manufacturing with advanced technologies, driving 
                         digital transformation, and clearly communicating complex concepts. My expertise includes electronics hardware design, 
@@ -469,118 +479,118 @@
     </section>
 
     <!-- Publications Section -->
-    <section class="py-16 px-4 bg-gray-50 section-fade-in" id="publications">
-        <div class="container mx-auto max-w-4xl">
-            <h2 class="text-3xl font-bold text-center mb-12">PUBLICATIONS</h2>
+    <section class="py-12 md:py-16 px-4 md:px-6 lg:px-8 bg-gray-50 section-fade-in" id="publications">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-8 md:mb-12">PUBLICATIONS</h2>
             
-            <div class="space-y-6">
+            <div class="space-y-4 md:space-y-6">
                 <!-- Publication 1 -->
-                <div class="bg-white p-6 shadow-lg">
-                    <h3 class="text-xl font-bold mb-2 text-gray-900">Intelligent GD&T symbol detection in mechanical drawings: a comparative study of YOLOv11, Faster R-CNN, and RetinaNet for quality assurance</h3>
-                    <p class="text-gray-700 mb-3">
+                <div class="bg-white p-4 md:p-6 rounded-lg shadow-lg">
+                    <h3 class="text-base md:text-lg lg:text-xl font-bold mb-2 md:mb-3 text-gray-900 leading-tight">Intelligent GD&T symbol detection in mechanical drawings: a comparative study of YOLOv11, Faster R-CNN, and RetinaNet for quality assurance</h3>
+                    <p class="text-gray-700 mb-2 md:mb-3 text-xs md:text-sm leading-relaxed">
                         <strong>Authors:</strong> Tadigotla Narendra Reddy, Nitesh Kumar, <strong>Nachappa Pemmanda Ponnappa</strong>, Nagasiri Mohana, Prakash Vinod, Mervin A. Herbert, Shrikantha S. Rao
                     </p>
-                    <p class="text-gray-600 mb-3">
+                    <p class="text-gray-600 mb-2 md:mb-3 text-xs md:text-sm">
                         <strong>Journal:</strong> Journal of Intelligent Manufacturing (2025)
                     </p>
-                    <p class="text-gray-700 mb-4">
+                    <p class="text-gray-700 mb-3 md:mb-4 text-xs md:text-sm leading-relaxed">
                         This research presents a comparative analysis of three state-of-the-art deep learning models for automated GD&T symbol detection in CAD engineering drawings. The study addresses the need for cost-effective, indigenous solutions for SMEs and MSMEs in quality automation tasks, demonstrating that YOLOv11 provides the optimal balance between detection accuracy and real-time performance.
                     </p>
-                    <a href="https://link.springer.com/article/10.1007/s10845-025-02669-3" target="_blank" class="inline-block bg-black text-white px-4 py-2 font-semibold hover:bg-gray-800 transition">View Publication</a>
+                    <a href="https://link.springer.com/article/10.1007/s10845-025-02669-3" target="_blank" class="inline-block bg-black text-white px-4 py-2 rounded font-semibold hover:bg-gray-800 transition text-xs md:text-sm w-full sm:w-auto text-center">View Publication</a>
                 </div>
 
                 <!-- Publication 2 -->
-                <div class="bg-white p-6 shadow-lg">
-                    <h3 class="text-xl font-bold mb-2 text-gray-900">Overall equipment efficiency module and losses using machine-to-machine connectivity for smart factory</h3>
-                    <p class="text-gray-700 mb-3">
+                <div class="bg-white p-4 md:p-6 rounded-lg shadow-lg">
+                    <h3 class="text-base md:text-lg lg:text-xl font-bold mb-2 md:mb-3 text-gray-900 leading-tight">Overall equipment efficiency module and losses using machine-to-machine connectivity for smart factory</h3>
+                    <p class="text-gray-700 mb-2 md:mb-3 text-xs md:text-sm leading-relaxed">
                         <strong>Authors:</strong> Tadigotla Narendra Reddy, <strong>Nachappa Pemmanda Ponnappa</strong>, Prakash Vinod, Mervin A. Herbert, Shrikantha S. Rao
                     </p>
-                    <p class="text-gray-600 mb-3">
+                    <p class="text-gray-600 mb-2 md:mb-3 text-xs md:text-sm">
                         <strong>Journal:</strong> ISSS Journal of Micro and Smart Systems, Volume 14, pages 87–99 (2025)
                     </p>
-                    <p class="text-gray-700 mb-4">
+                    <p class="text-gray-700 mb-3 md:mb-4 text-xs md:text-sm leading-relaxed">
                         This study focuses on implementing Overall Equipment Effectiveness (OEE) using OPC UA (Open Platform Communications Unified Architecture) in smart manufacturing settings. The research combines data from CNC machines with plant schedules to demonstrate real-time OEE calculation and identify operational losses. The solution can be deployed on-premises or in the cloud to automate OEE calculation processes, providing insights for productivity gains and operational flow improvements.
                     </p>
-                    <a href="https://link.springer.com/article/10.1007/s41683-025-00134-0" target="_blank" class="inline-block bg-black text-white px-4 py-2 font-semibold hover:bg-gray-800 transition">View Publication</a>
+                    <a href="https://link.springer.com/article/10.1007/s41683-025-00134-0" target="_blank" class="inline-block bg-black text-white px-4 py-2 rounded font-semibold hover:bg-gray-800 transition text-xs md:text-sm w-full sm:w-auto text-center">View Publication</a>
                 </div>
 
                 <!-- Publication 3 -->
-                <div class="bg-white p-6 shadow-lg">
-                    <h3 class="text-xl font-bold mb-2 text-gray-900">Development of Low-Cost IIoT Solution for Smart Factories in MSME Industries: Utilizing Current Measurements for Machine and Factory Monitoring</h3>
-                    <p class="text-gray-700 mb-3">
+                <div class="bg-white p-4 md:p-6 rounded-lg shadow-lg">
+                    <h3 class="text-base md:text-lg lg:text-xl font-bold mb-2 md:mb-3 text-gray-900 leading-tight">Development of Low-Cost IIoT Solution for Smart Factories in MSME Industries: Utilizing Current Measurements for Machine and Factory Monitoring</h3>
+                    <p class="text-gray-700 mb-2 md:mb-3 text-xs md:text-sm leading-relaxed">
                         <strong>Authors:</strong> T. Narendra Reddy, Shri Prakash Vinod, <strong>P. P. Nachappa</strong>, Mervin A. Herbert, Shrikantha S. Rao
                     </p>
-                    <p class="text-gray-600 mb-3">
+                    <p class="text-gray-600 mb-2 md:mb-3 text-xs md:text-sm">
                         <strong>Conference:</strong> Industry 4.0 and Advanced Manufacturing (I-4AM 2024), Lecture Notes in Mechanical Engineering
                     </p>
-                    <p class="text-gray-700 mb-4">
+                    <p class="text-gray-700 mb-3 md:mb-4 text-xs md:text-sm leading-relaxed">
                         This paper presents the development of an affordable IIoT solution for productivity monitoring in MSME industries. The solution leverages cost-effective hardware for sensing, a controller for data acquisition and analysis, and an edge gateway for cloud storage. The system provides insights into factory and machine statuses, facilitates productivity tracking, and enables automated reporting through Email and SMS with customized daily and monthly reports.
                     </p>
-                    <a href="https://link.springer.com/chapter/10.1007/978-981-97-6176-0_3" target="_blank" class="inline-block bg-black text-white px-4 py-2 font-semibold hover:bg-gray-800 transition">View Chapter</a>
+                    <a href="https://link.springer.com/chapter/10.1007/978-981-97-6176-0_3" target="_blank" class="inline-block bg-black text-white px-4 py-2 rounded font-semibold hover:bg-gray-800 transition text-xs md:text-sm w-full sm:w-auto text-center">View Chapter</a>
                 </div>
 
                 <!-- Publication 4 -->
-                <div class="bg-white p-6 shadow-lg">
-                    <h3 class="text-xl font-bold mb-2 text-gray-900">An Industry 4.0 Approach: Data Acquisition and Machine Monitoring for Welding Machines</h3>
-                    <p class="text-gray-700 mb-3">
+                <div class="bg-white p-4 md:p-6 rounded-lg shadow-lg">
+                    <h3 class="text-base md:text-lg lg:text-xl font-bold mb-2 md:mb-3 text-gray-900 leading-tight">An Industry 4.0 Approach: Data Acquisition and Machine Monitoring for Welding Machines</h3>
+                    <p class="text-gray-700 mb-2 md:mb-3 text-xs md:text-sm leading-relaxed">
                         <strong>Authors:</strong> T. Narendra Reddy, <strong>Nachappa Pemmanda Ponnappa</strong>, P. Prasad, Prakash Vinod, Mervin A. Herbert, Shrikantha S. Rao
                     </p>
-                    <p class="text-gray-600 mb-3">
+                    <p class="text-gray-600 mb-2 md:mb-3 text-xs md:text-sm">
                         <strong>Conference:</strong> Smart Materials and Manufacturing Technologies for Sustainable Development (SME 2023), Advances in Science, Technology & Innovation
                     </p>
-                    <p class="text-gray-700 mb-4">
+                    <p class="text-gray-700 mb-3 md:mb-4 text-xs md:text-sm leading-relaxed">
                         This research introduces an innovative application of Industry 4.0 principles in welding by employing IIoT-based performance monitoring equipment. The developed solution can be used for any kind of welding machines including legacy welding machines, delivering real-time updates on shop floor welding processes using Operational Technology (OT) and Information Technology (IT) with hall effect sensors and voltage transducers connected to PLCs.
                     </p>
-                    <a href="https://link.springer.com/chapter/10.1007/978-3-031-63909-8_6" target="_blank" class="inline-block bg-black text-white px-4 py-2 font-semibold hover:bg-gray-800 transition">View Chapter</a>
+                    <a href="https://link.springer.com/chapter/10.1007/978-3-031-63909-8_6" target="_blank" class="inline-block bg-black text-white px-4 py-2 rounded font-semibold hover:bg-gray-800 transition text-xs md:text-sm w-full sm:w-auto text-center">View Chapter</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="py-16 px-4 text-white section-fade-in relative" id="contact" style="background-image: url('Wallpaper1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <section class="py-12 md:py-16 px-4 md:px-6 lg:px-8 text-white section-fade-in relative" id="contact" style="background-image: url('Wallpaper1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
         <!-- Dark overlay for text readability -->
         <div class="absolute inset-0 bg-black bg-opacity-60"></div>
         <div class="container mx-auto max-w-4xl text-center relative z-10">
-            <h2 class="text-3xl font-bold mb-4">LET'S CONNECT</h2>
-            <p class="mb-8">I'm always interested in new opportunities and exciting projects. Let's discuss how we can work together.</p>
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">LET'S CONNECT</h2>
+            <p class="text-sm md:text-base mb-6 md:mb-8 px-4">I'm always interested in new opportunities and exciting projects. Let's discuss how we can work together.</p>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-8">
                 <div class="text-center">
-                    <i class="fas fa-envelope text-3xl mb-4"></i>
-                    <h3 class="font-semibold mb-2">Email</h3>
-                    <p>nikinachappa57@gmail.com</p>
+                    <i class="fas fa-envelope text-2xl md:text-3xl mb-3 md:mb-4"></i>
+                    <h3 class="font-semibold mb-2 text-sm md:text-base">Email</h3>
+                    <p class="text-xs md:text-sm break-words px-2">nikinachappa57@gmail.com</p>
                 </div>
                 <div class="text-center">
-                    <i class="fas fa-phone text-3xl mb-4"></i>
-                    <h3 class="font-semibold mb-2">Phone</h3>
-                    <p>+91 9108330616</p>
+                    <i class="fas fa-phone text-2xl md:text-3xl mb-3 md:mb-4"></i>
+                    <h3 class="font-semibold mb-2 text-sm md:text-base">Phone</h3>
+                    <p class="text-xs md:text-sm">+91 9108330616</p>
                 </div>
                 <div class="text-center">
-                    <i class="fas fa-map-marker-alt text-3xl mb-4"></i>
-                    <h3 class="font-semibold mb-2">Location</h3>
-                    <p>Bangalore, India</p>
+                    <i class="fas fa-map-marker-alt text-2xl md:text-3xl mb-3 md:mb-4"></i>
+                    <h3 class="font-semibold mb-2 text-sm md:text-base">Location</h3>
+                    <p class="text-xs md:text-sm">Bangalore, India</p>
                 </div>
             </div>
             
-            <form class="flex flex-col md:flex-row gap-4 max-w-lg mx-auto">
-                <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3  text-black">
-                <button type="submit" class="bg-white text-black px-6 py-3  font-semibold hover:bg-gray-200 transition">SEND MESSAGE</button>
+            <form class="flex flex-col md:flex-row gap-3 md:gap-4 max-w-lg mx-auto px-4">
+                <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded text-black text-sm md:text-base">
+                <button type="submit" class="bg-white text-black px-6 py-3 rounded font-semibold hover:bg-gray-200 transition text-sm md:text-base w-full md:w-auto">SEND MESSAGE</button>
             </form>
             
-            <div class="flex justify-center space-x-6 mt-8">
-                <a href="https://www.linkedin.com/in/nachappa-pp-60a1b9368/" class="text-white hover:text-gray-300"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/" class="text-white hover:text-gray-300"><i class="fab fa-github"></i></a>
-                <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="text-white hover:text-gray-300"><i class="fas fa-globe"></i></a>
+            <div class="flex justify-center space-x-4 md:space-x-6 mt-6 md:mt-8">
+                <a href="https://www.linkedin.com/in/nachappa-pp-60a1b9368/" class="text-white hover:text-gray-300 transition"><i class="fab fa-linkedin text-xl md:text-2xl"></i></a>
+                <a href="https://github.com/" class="text-white hover:text-gray-300 transition"><i class="fab fa-github text-xl md:text-2xl"></i></a>
+                <a href="#" class="text-white hover:text-gray-300 transition"><i class="fab fa-twitter text-xl md:text-2xl"></i></a>
+                <a href="#" class="text-white hover:text-gray-300 transition"><i class="fas fa-globe text-xl md:text-2xl"></i></a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-100 py-8 px-4">
+    <footer class="bg-gray-100 py-6 md:py-8 px-4">
         <div class="container mx-auto text-center">
-            <p class="text-gray-600">© 2025 Nachappa PP. All rights reserved.</p>
+            <p class="text-gray-600 text-xs md:text-sm">© 2025 Nachappa PP. All rights reserved.</p>
         </div>
     </footer>
 
